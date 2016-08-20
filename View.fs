@@ -4,7 +4,10 @@ open Suave.Html
 
 let divId id = divAttr ["id", id]
 let h1 = tag "h1" []
+let h2 s = tag "h2" [] (text s)
 let cssLink href = linkAttr [ "href", href; " rel", "stylesheet"; " type", "text/css" ]
+let ul xml = tag "ul" [] xml
+let li = tag "li" []
 
 let index container = 
     html [
@@ -33,8 +36,18 @@ let index container =
 let home =
     text "Home"
 
-let store =
-    text "Store"
+let store genres = [
+    h2 "Browse Genres"
+    p [
+        Text (sprintf "Select from %d genres:" (List.length genres))
+    ]
+    ul [
+        for g in genres ->
+            li [
+                (a (Path.Store.browse |> Path.withParam (Path.Store.browseKey, g)) (text g))
+            ]
+    ]
+]
 
 let browse genre =
     text (sprintf "Genre: %s" genre)

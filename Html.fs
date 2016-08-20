@@ -81,7 +81,7 @@ let samplePage =
       scriptAttr [ "type", "text/javascript" ] (text "$().ready(function () { setup(); });" )
     ]
     body [
-        divAttr ["id","content"] [
+      divAttr ["id","content"] [
         p (text "Hello world.")
         br
         imgAttr [ "src", "http://fsharp.org/img/logo/fsharp256.png"]
